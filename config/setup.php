@@ -3,8 +3,7 @@
 
 	//Delete the DB is it exists then create/recreate it
 	try {
-		$pdo = new PDO($DB_DSN_NONAME, $DB_USER, $DB_PASSWORD);
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$pdo = connectDB($DB_DSN_NONAME, $DB_USER, $DB_PASSWORD);
 
 		$sql = 'DROP DATABASE IF EXISTS '.$DB_NAME;
 		if ($pdo->exec($sql))
@@ -21,29 +20,31 @@
 
 	try {
 		//Connect to DB
-		$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD);
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
 		echo ('Successfully Connected!<br>');
 
 		//Create the 'users' table
 		$sql = 'CREATE TABLE IF NOT EXISTS users(
 			id INT AUTO_INCREMENT,
+			user_name VARCHAR(50) NOT NULL,
 			first_name VARCHAR(100) NOT NULL,
 			last_name VARCHAR(100) NOT NULL,
 			email VARCHAR(255) NOT NULL,
 			password VARCHAR(255) NOT NULL,
+			display_picture VARCHAR(255),
 			registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 			is_admin TINYINT(1) DEFAULT 0,
-			PRIMARY KEY(id)
+			PRIMARY KEY(id),
+			UNIQUE(id, user_name)
 		)';
 		$pdo->exec($sql);
 		echo ('Users Table Created!<br>');
 
 		//Insert some default users into the 'users' table
-		$sql = 'INSERT INTO users(first_name, last_name, email, password, is_admin)
-				VALUES("admin", "admin", "admin@camagru.com", "admin", 1),
-				("Shaun", "Tenner", "stenner@student.wethinkcode.co.za", "123four56", 0),
-				("Pete", "Peterson", "peterpete11@emailer.com", "pete11pete", 0)';
+		$sql = 'INSERT INTO users(user_name, first_name, last_name, email, password, is_admin)
+				VALUES("admin", "admin", "admin", "admin@camagru.com", "admin", 1),
+				("stenner", "Shaun", "Tenner", "stenner@student.wethinkcode.co.za", "123four56", 0),
+				("petepete", "Pete", "Peterson", "peterpete11@emailer.com", "pete11pete", 0)';
 		$pdo->exec($sql);
 		echo ('Base Users Created!<br>');
 
