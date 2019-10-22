@@ -42,9 +42,9 @@
 
 		//Insert some default users into the 'users' table
 		$sql = 'INSERT INTO users(user_name, first_name, last_name, email, password, is_admin)
-				VALUES("admin", "admin", "admin", "admin@camagru.com", "admin", 1),
-				("stenner", "Shaun", "Tenner", "stenner@student.wethinkcode.co.za", "123four56", 0),
-				("petepete", "Pete", "Peterson", "peterpete11@emailer.com", "pete11pete", 0)';
+				VALUES("admin", "admin", "admin", "admin@camagru.com", "'.password_hash("admin", PASSWORD_DEFAULT).'", 1),
+				("stenner", "Shaun", "Tenner", "stenner@student.wethinkcode.co.za","'.password_hash("123four56", PASSWORD_DEFAULT).'", 0),
+				("petepete", "Pete", "Peterson", "peterpete11@emailer.com", "'.password_hash("pete11pete", PASSWORD_DEFAULT).'", 0)';
 		$pdo->exec($sql);
 		echo ('Base Users Created!<br>');
 
@@ -74,7 +74,7 @@
 		$pdo->exec($sql);
 		echo ('Friends Table Created!(temp)<br>');
 
-
+		$pdo = null;
 	}catch(PDOException $e){
 		echo ('Failed: '.$e->getMessage());
 	}

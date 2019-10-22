@@ -1,3 +1,13 @@
-body{
-	background: aliceblue;
+html, body, h1, h2, h3, h4, h5, h6{
+	font-family: 'Advent Pro', sans-serif;
 }
+
+body{
+	/* background: aliceblue; */
+	font-family: 'Advent Pro', sans-serif;
+}
+
+/* .signup{
+	width: 60%;
+	margin: auto;
+} */
