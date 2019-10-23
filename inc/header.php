@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,3 +15,17 @@
 	<link href="https://fonts.googleapis.com/css?family=Advent+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="w3-top">
+	<div class="w3-bar w3-black w3-card w3-border-bottom w3-border-red">
+		<a href="index.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium ">Home</a>
+		<?php if(!isset($_SESSION['user'])):?>
+			<a href="signup.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right">Register</a>
+			<a href="login.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right">Login</a>
+		<?php else:?>
+		<form method="post" action="inc/logout.inc.php">
+			<input type="submit" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right" value="Logout">
+		</form>
+		<a href="#" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right">Welcome <?php echo $_SESSION['user']->first_name?></a>
+		<?php endif?>
+	</div>
+</div>

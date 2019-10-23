@@ -1,6 +1,8 @@
 <?php
 	$msg = '';
 	$msgClass = '';
+	$passMsg = 'Password must be atleast 8 characters long, contain 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character';
+
 	require('config/database.php');
 
 	if (filter_has_var(INPUT_POST, 'submit')){
@@ -48,19 +50,19 @@
 				$msg = 'Email already taken';
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if (strlen($password) < 8){
-				$msg = 'Password must be atleast 8 characters long';
+				$msg = 'Too few characters in password<br>'.$passMsg;
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if (!preg_match("@[A-Z]@", $password)){
-				$msg = 'Password must contain atleast one uppercase letter';
+				$msg = 'No uppercase letter in password<br>'.$passMsg;
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if (!preg_match("@[a-z]@", $password)){
-				$msg = 'Password must contain atleast one lowercase letter';
+				$msg = 'No Lowercase letter in password<br>'.$passMsg;
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if (!preg_match("@[0-9]@", $password)){
-				$msg = 'Password must contain atleast one number';
+				$msg = 'No number in password<br>'.$passMsg;
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if (!preg_match("@[^\w]@", $password)){
-				$msg = 'Password must contain atleast one special character';
+				$msg = 'No special character in password<br>'.$passMsg;
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if ($password != $password2){
 				$msg = 'Make sure you retyped your password correctly';
@@ -92,41 +94,41 @@
 ?>
 
 <?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
-<div class="w3-container w3-padding signup w3-display-middle w3-half">
+<div class="w3-container w3-padding signup w3-display-middle w3-half w3-border w3-border-red">
 	<?php if($msg != ''): ?>
 		<div class="<?php echo $msgClass; ?>">
 			<?php echo $msg?>
 		</div>
 	<?php endif?>
 	<form class="w3-container w3-card-4" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
-		<h2 class="w3-text-blue">Sign Up(Temp)</h2>
+		<h2 class="w3-text-red">Sign Up(Temp)</h2>
 		<p>
-			<label class="w3-text-blue"><b>First Name</b></label>
-			<input class="w3-input w3-border" name="first_name" type="text" placeholder="First Name" required value="<?php echo isset($_POST['first_name']) ? $firstName : ''; ?>">
+			<label class="w3-text-red"><b>First Name</b></label>
+			<input class="w3-input w3-border w3-grey" name="first_name" type="text" placeholder="First Name" required value="<?php echo isset($_POST['first_name']) ? $firstName : ''; ?>">
 		</p>
 		<p>
-			<label class="w3-text-blue"><b>Last Name</b></label>
-			<input class="w3-input w3-border" name="last_name" type="text" placeholder="Last Name" required value="<?php echo isset($_POST['last_name']) ? $lastName : ''; ?>">
+			<label class="w3-text-red"><b>Last Name</b></label>
+			<input class="w3-input w3-border w3-grey" name="last_name" type="text" placeholder="Last Name" required value="<?php echo isset($_POST['last_name']) ? $lastName : ''; ?>">
 		</p>
 		<p>
 		<p>
-			<label class="w3-text-blue"><b>User Name</b></label>
-			<input class="w3-input w3-border" name="user_name" type="text" placeholder="User Name" required value="<?php echo isset($_POST['user_name']) ? $userName : ''; ?>">
+			<label class="w3-text-red"><b>User Name</b></label>
+			<input class="w3-input w3-border w3-grey" name="user_name" type="text" placeholder="User Name" required value="<?php echo isset($_POST['user_name']) ? $userName : ''; ?>">
 		</p>
 		<p>
-			<label class="w3-text-blue"><b>Email</b></label>
-			<input class="w3-input w3-border" name="email" type="email" placeholder="Email" required value="<?php echo isset($_POST['email']) ? $email : ''; ?>">
+			<label class="w3-text-red"><b>Email</b></label>
+			<input class="w3-input w3-border w3-grey" name="email" type="email" placeholder="Email" required value="<?php echo isset($_POST['email']) ? $email : ''; ?>">
 		</p>
 		<p>
-			<label class="w3-text-blue"><b>Password</b></label>
-			<input class="w3-input w3-border" name="password" type="password" placeholder="Password" required value="<?php echo isset($_POST['password']) ? $password : ''; ?>">
+			<label class="w3-text-red"><b>Password</b></label>
+			<input class="w3-input w3-border w3-grey" name="password" type="password" placeholder="Password" required >
 		</p>
 		<p>
-			<label class="w3-text-blue"><b>Re-enter Password</b></label>
-			<input class="w3-input w3-border" name="password_2" type="password" placeholder="Re-enter Password" required value="<?php echo isset($_POST['password_2']) ? $password2 : ''; ?>">
+			<label class="w3-text-red"><b>Re-enter Password</b></label>
+			<input class="w3-input w3-border w3-grey" name="password_2" type="password" placeholder="Re-enter Password" required>
 		</p>
 		
-		<p><input type="submit" name="submit" value="Register" class="w3-btn w3-blue"></p>
+		<p><input type="submit" name="submit" value="Register" class="w3-btn w3-red"></p>
 	</form>
 </div>
 <?php require('inc/footer.php')?>

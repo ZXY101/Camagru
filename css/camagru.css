@@ -1,13 +1,20 @@
+@font-face {
+	font-family: 'CyberpunkWaifus';
+	src: url('../CyberpunkWaifus.woff') format('woff'); /* Pretty Modern Browsers */
+  }
+
 html, body, h1, h2, h3, h4, h5, h6{
-	font-family: 'Advent Pro', sans-serif;
+	/* font-family: 'Advent Pro', sans-serif; */
+	font-family: 'CyberpunkWaifus', Fallback, sans-serif;
+	font-size: 20px;
+	background: #000;
 }
 
-body{
-	/* background: aliceblue; */
-	font-family: 'Advent Pro', sans-serif;
+h2{
+	font-size: 30px;
 }
 
-/* .signup{
-	width: 60%;
-	margin: auto;
-} */
+.nopad{
+	padding: 0;
+	margin: 0;
+}
