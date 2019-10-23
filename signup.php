@@ -71,15 +71,43 @@
 				$msg = 'User Added';
 				$msgClass = 'w3-panel w3-pale-green w3-border';
 
+				//Generate Verification Key
+				$vkey = $userName . $email . date('mY');
+				$vkey = md5($vkey);
 				
 				try{
+				//Add the user to the DB
 				$sql = 'INSERT INTO users(user_name, first_name, last_name, email, password)
-						VALUES(:user_name, :first_name, :last_name, :email, :password)';
+					VALUES(:user_name, :first_name, :last_name, :email, :password)';
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(['user_name'=>$userName, 'first_name'=>$firstName, 'last_name'=>$lastName, 'email'=>$email, 'password'=>password_hash($password, PASSWORD_DEFAULT)]);
+
+				//Add the vkey and userid to the vkey table
+				$sql = 'INSERT INTO vkey(user_id, vkey) VALUES(:user_id, :vkey)';
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(['user_id'=>$pdo->lastInsertId(), 'vkey'=>$vkey]);
 				}catch(PDOException $e){
 					echo $e->getMessage();
 				}
+
+				//Send the verification email
+				$toEmail = $email;
+				$subject = 'Camagru Email Verification'.$name;
+				$body = '<h2>Verify your email</h2>
+				<p>Thank you for registering to Camagru, to verify your email adress please follow this link:</p>
+				<a href="http://localhost/Camagru/verify.php?vkey='.$vkey.'">Verify Email</a>';
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-Type:text/html;charset=UTF-8"."\r\n";
+				$headers .= "From: " . $name. "<".$email.">"."\r\n";
+
+				if (mail($toEmail, $subject, $body, $headers)){
+					$msg = 'Email Sent';
+					$msgClass = 'w3-panel w3-pale-green w3-border';
+				}else{
+					$msg = 'Email Failed To Send';
+					$msgClass = 'w3-panel w3-pale-red w3-border';
+				}
+
 			}
 		}else
 		{
