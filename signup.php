@@ -101,34 +101,34 @@
 		</div>
 	<?php endif?>
 	<form class="w3-container w3-card-4" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
-		<h2 class="w3-text-red">Sign Up(Temp)</h2>
+		<h2 class="w3-text-red">Sign Up</h2>
 		<p>
 			<label class="w3-text-red"><b>First Name</b></label>
-			<input class="w3-input w3-border w3-grey" name="first_name" type="text" placeholder="First Name" required value="<?php echo isset($_POST['first_name']) ? $firstName : ''; ?>">
+			<input class="w3-input w3-border w3-black" name="first_name" type="text" placeholder="First Name" required value="<?php echo isset($_POST['first_name']) ? $firstName : ''; ?>">
 		</p>
 		<p>
 			<label class="w3-text-red"><b>Last Name</b></label>
-			<input class="w3-input w3-border w3-grey" name="last_name" type="text" placeholder="Last Name" required value="<?php echo isset($_POST['last_name']) ? $lastName : ''; ?>">
+			<input class="w3-input w3-border w3-black" name="last_name" type="text" placeholder="Last Name" required value="<?php echo isset($_POST['last_name']) ? $lastName : ''; ?>">
 		</p>
 		<p>
 		<p>
 			<label class="w3-text-red"><b>User Name</b></label>
-			<input class="w3-input w3-border w3-grey" name="user_name" type="text" placeholder="User Name" required value="<?php echo isset($_POST['user_name']) ? $userName : ''; ?>">
+			<input class="w3-input w3-border w3-black" name="user_name" type="text" placeholder="User Name" required value="<?php echo isset($_POST['user_name']) ? $userName : ''; ?>">
 		</p>
 		<p>
 			<label class="w3-text-red"><b>Email</b></label>
-			<input class="w3-input w3-border w3-grey" name="email" type="email" placeholder="Email" required value="<?php echo isset($_POST['email']) ? $email : ''; ?>">
+			<input class="w3-input w3-border w3-black" name="email" type="email" placeholder="Email" required value="<?php echo isset($_POST['email']) ? $email : ''; ?>">
 		</p>
 		<p>
 			<label class="w3-text-red"><b>Password</b></label>
-			<input class="w3-input w3-border w3-grey" name="password" type="password" placeholder="Password" required >
+			<input class="w3-input w3-border w3-black" name="password" type="password" placeholder="Password" required >
 		</p>
 		<p>
 			<label class="w3-text-red"><b>Re-enter Password</b></label>
-			<input class="w3-input w3-border w3-grey" name="password_2" type="password" placeholder="Re-enter Password" required>
+			<input class="w3-input w3-border w3-black" name="password_2" type="password" placeholder="Re-enter Password" required>
 		</p>
 		
-		<p><input type="submit" name="submit" value="Register" class="w3-btn w3-red"></p>
+		<p><input type="submit" name="submit" value="Register" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border"></p>
 	</form>
 </div>
 <?php require('inc/footer.php')?>

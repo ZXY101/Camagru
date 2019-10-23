@@ -50,18 +50,18 @@
 		</div>
 	<?php endif?>
 	<form class="w3-container w3-card-4" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
-		<h2 class="w3-text-red">Log In(Temp)</h2>
+		<h2 class="w3-text-red">Log In</h2>
 		<p>
 			<label class="w3-text-red"><b>User Name/Email</b></label>
-			<input class="w3-input w3-border w3-grey" name="user_login" type="text" placeholder="User Name/Email" required value="<?php echo isset($_POST['user_login']) ? $userLogin : ''; ?>">
+			<input class="w3-input w3-border w3-black" name="user_login" type="text" placeholder="User Name/Email" required value="<?php echo isset($_POST['user_login']) ? $userLogin : ''; ?>">
 		</p>
 		<p>
 			<label class="w3-text-red"><b>Password</b></label>
-			<input class="w3-input w3-border w3-grey" name="password" type="password" required placeholder="Password">
+			<input class="w3-input w3-border w3-black" name="password" type="password" required placeholder="Password">
 		</p>
 
 		
-		<p><input type="submit" name="submit" value="Log In" class="w3-btn w3-red"></p>
+		<p><input type="submit" name="submit" value="Log In" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border"></p>
 	</form>
 </div>
 <?php require('inc/footer.php')?>
