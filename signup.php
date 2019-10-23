@@ -1,11 +1,11 @@
 <?php
 	$msg = '';
 	$msgClass = '';
-	$passMsg = 'Password must be atleast 8 characters long, contain 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character';
 
 	require('config/database.php');
 
 	if (filter_has_var(INPUT_POST, 'submit')){
+		//Store all of the fields in variables and clean up the input
 		$firstName = ucwords(strtolower(trim(htmlspecialchars($_POST['first_name']))));
 		$lastName = ucwords(strtolower(trim(htmlspecialchars($_POST['last_name']))));
 		$userName = strtolower(trim(htmlspecialchars($_POST['user_name'])));
@@ -13,7 +13,7 @@
 		$password = htmlspecialchars($_POST['password']);
 		$password2 = htmlspecialchars($_POST['password_2']);
 		
-
+		//Verify all of the user input
 		if (!empty($firstName) && !empty($lastName) && !empty($userName) && !empty($email) && !empty($password) && !empty($password2))	
 		{
 			try{
@@ -31,6 +31,7 @@
 			}catch(PDOException $e){
 				echo $e->getMessage();
 			}
+			$passMsg = 'Password must be atleast 8 characters long, contain 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character';
 			if (!ctype_alpha($firstName)){
 				$msg = 'Please enter a valid first name';
 				$msgClass = 'w3-panel w3-pale-red w3-border';
@@ -67,7 +68,7 @@
 			}else if ($password != $password2){
 				$msg = 'Make sure you retyped your password correctly';
 				$msgClass = 'w3-panel w3-pale-red w3-border';
-			}else{
+			}else{//Execute if all of the input is valid//
 				$msg = 'User Added';
 				$msgClass = 'w3-panel w3-pale-green w3-border';
 

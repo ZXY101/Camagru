@@ -4,6 +4,7 @@
 	require('config/database.php');
 
 	if (filter_has_var(INPUT_POST, 'submit')){
+		//Store and validate inputs
 		$userLogin = strtolower(trim(htmlspecialchars($_POST['user_login'])));
 		$password = htmlspecialchars($_POST['password']);
 		
@@ -11,6 +12,7 @@
 			try{
 				$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
 
+				//Search the DB for the user
 				$sql = 'SELECT * FROM users WHERE user_name = :user_login OR email = :user_login';
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(['user_login'=>$userLogin]);
@@ -18,7 +20,7 @@
 				
 				if ($user_found){
 					$user = $stmt->fetch();
-
+					//Check if the password is correct if the user is found
 					if (password_verify($password, $user->password)){
 						session_start();
 						$_SESSION['user'] = $user;
