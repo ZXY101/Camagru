@@ -17,14 +17,21 @@
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute(['user_login'=>$userLogin]);
 				$user_found = $stmt->rowCount();
-				
+
 				if ($user_found){
 					$user = $stmt->fetch();
 					//Check if the password is correct if the user is found
 					if (password_verify($password, $user->password)){
-						session_start();
-						$_SESSION['user'] = $user;
-						header('Location: index.php');
+						if ($user->is_verified){
+							$pdo = null;
+							$stmt = null;
+							session_start();
+							$_SESSION['user'] = $user;
+							header('Location: index.php');
+						}else{
+							$msg = "Please verify your email adress";
+							$msgClass = 'w3-panel w3-pale-red w3-border';
+						}
 					}else{
 						$msg = "Incorrect password";
 						$msgClass = 'w3-panel w3-pale-red w3-border';
