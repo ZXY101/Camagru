@@ -13,7 +13,7 @@
 ?>
 
 <?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
-<div class="w3-container w3-display-middle w3-center">
+<div class="w3-container w3-center">
 	<?php foreach ($posts as $post):?>
 	<div class="w3-card w3-margin w3-border w3-border-red w3-padding">
 		<p class="w3-text-red"><?php echo $post->title?></p>
