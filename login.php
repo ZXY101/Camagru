@@ -1,7 +1,13 @@
 <?php
 	$msg = '';
 	$msgClass = '';
+	session_start();
 	require('config/database.php');
+
+	if (isset($_SESSION['logged_in']))
+	{
+		header('Location: index.php');
+	}
 
 	if (filter_has_var(INPUT_POST, 'submit')){
 		//Store and validate inputs
@@ -25,8 +31,8 @@
 						if ($user->is_verified){
 							$pdo = null;
 							$stmt = null;
-							session_start();
 							$_SESSION['user'] = $user;
+							$_SESSION['logged_in'] = 1;
 							header('Location: index.php');
 						}else{
 							$msg = "Please verify your email adress";
@@ -52,7 +58,7 @@
 ?>
 
 <?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
-<div class="w3-container w3-padding signup w3-display-middle w3-half w3-border w3-border-red">
+<div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red">
 	<?php if($msg != ''): ?>
 		<div class="<?php echo $msgClass; ?>">
 			<?php echo $msg?>

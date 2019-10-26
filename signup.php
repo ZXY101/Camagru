@@ -1,8 +1,13 @@
 <?php
 	$msg = '';
 	$msgClass = '';
-
+	session_start();
 	require('config/database.php');
+
+	if (isset($_SESSION['logged_in']))
+	{
+		header('Location: index.php');
+	}
 
 	if (filter_has_var(INPUT_POST, 'submit')){
 		//Store all of the fields in variables and clean up the input
@@ -102,8 +107,9 @@
 				$headers .= "From: " . $name. "<".$email.">"."\r\n";
 
 				if (mail($toEmail, $subject, $body, $headers)){
-					$msg = 'Email Sent';
+					$msg = 'Success';
 					$msgClass = 'w3-panel w3-pale-green w3-border';
+					header('Location: success.php');
 				}else{
 					$msg = 'Email Failed To Send';
 					$msgClass = 'w3-panel w3-pale-red w3-border';
@@ -123,7 +129,7 @@
 ?>
 
 <?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
-<div class="w3-container w3-padding signup w3-display-middle w3-half w3-border w3-border-red">
+<div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red">
 	<?php if($msg != ''): ?>
 		<div class="<?php echo $msgClass; ?>">
 			<?php echo $msg?>

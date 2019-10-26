@@ -1,5 +1,11 @@
 <?php
 	//Verify the user
+	$msg = 'Oops, Something went wrong';
+	session_start();
+	if (isset($_SESSION['logged_in'])){
+		header('Location: index.php');
+	}
+	
 	if (isset($_GET['vkey'])){
 		$vkey = $_GET['vkey'];
 		require('config/database.php');
@@ -18,7 +24,8 @@
 				$sql = 'UPDATE users SET is_verified = 1 WHERE id = ?';
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute([$user->user_id]);
-				header('Location: login.php');
+				$msg = 'Account successfully registered.<br>Redirecting...';
+				header('Refresh: 5; URL=http://localhost/Camagru/login.php');
 			}
 			$pdo = null;
 			$stmt = null;
@@ -30,3 +37,9 @@
 		die('Oops, Something went wrong.');
 	}
 ?>
+
+<?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
+<div class="w3-container w3-padding signup w3-display-middle w3-half w3-border w3-border-red">
+	<p class="w3-text-white w3-center"><?php echo $msg?></p>
+</div>
+<?php require('inc/footer.php')?>

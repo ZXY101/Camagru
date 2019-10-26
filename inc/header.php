@@ -1,5 +1,7 @@
 <?php
-	session_start();
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +27,8 @@
 		<form method="post" action="inc/logout.inc.php">
 			<input type="submit" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right" value="Logout">
 		</form>
-		<a href="#" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right">Welcome <?php echo $_SESSION['user']->first_name?></a>
+		<a href="addpost.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium">&#10010;</a>
+		<a href="profile.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right">Welcome <?php echo $_SESSION['user']->first_name?></a>
 		<?php endif?>
 	</div>
 </div>
