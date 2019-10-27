@@ -1,25 +1,30 @@
 <?php
-	session_start();
-	require('config/database.php');
-
-	$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
-	$sql = 'SELECT * FROM posts';
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	$posts = $stmt->fetchAll();
-
-	$pdo = null;
-	$stmt = null;
+	if (isset($_GET['page']))
+	{
+		$page = htmlspecialchars($_GET['page']);
+		switch ($page) {
+			case 'signup.inc.php':
+				include('inc/signup.inc.php');
+				break;
+			case 'login.inc.php':
+				include('inc/login.inc.php');
+				break;
+			case 'profile.inc.php':
+				include('inc/profile.inc.php');
+				break;
+			case 'forgotpassword.inc.php':
+				include('inc/forgotpassword.inc.php');
+				break;
+			case 'success.inc.php':
+				include('inc/success.inc.php');
+				break;
+			case 'addpost.inc.php':
+				include('inc/addpost.inc.php');
+				break;
+			default:
+				include('inc/feed.inc.php');
+		}
+	}else{
+		include('inc/feed.inc.php');
+	}
 ?>
-
-<?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
-<div class="w3-container w3-center">
-	<?php foreach ($posts as $post):?>
-	<div class="w3-card w3-margin w3-border w3-border-red w3-padding">
-		<p class="w3-text-red"><?php echo $post->title?></p>
-		<small class="w3-text-white">By: <?php echo $post->user_id?> Created on <?php echo $post->published_at?></small>
-		<p class="w3-text-white"><?php echo $post->body?></p>
-	</div>
-	<?php endforeach?>
-</div>
-<?php require('inc/footer.php')?>

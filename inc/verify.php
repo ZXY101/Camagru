@@ -3,12 +3,12 @@
 	$msg = 'Oops, Something went wrong';
 	session_start();
 	if (isset($_SESSION['logged_in'])){
-		header('Location: index.php');
+		header('Location: ../Camagru/index.php');
 	}
 	
 	if (isset($_GET['vkey'])){
 		$vkey = $_GET['vkey'];
-		require('config/database.php');
+		require('../config/database.php');
 		try{
 			$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
 
@@ -25,7 +25,12 @@
 				$stmt = $pdo->prepare($sql);
 				$stmt->execute([$user->user_id]);
 				$msg = 'Account successfully registered.<br>Redirecting...';
-				header('Refresh: 5; URL=http://localhost/Camagru/login.php');
+				$sql = 'DELETE FROM vkey WHERE user_id = ?';
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute([$user->user_id]);
+				$pdo = null;
+				$stmt = null;
+				header('Refresh: 5; URL=http://localhost/Camagru/index.php?page=login.inc.php');
 			}
 			$pdo = null;
 			$stmt = null;
@@ -34,12 +39,12 @@
 			echo $e->getMessage();
 		}
 	}else{
-		die('Oops, Something went wrong.');
+		$msg = 'Oops, Something went wrong';
 	}
 ?>
 
-<?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
+<?php $page_title = 'Camagru - Welcome!';require('header.inc.php')?>
 <div class="w3-container w3-padding signup w3-display-middle w3-half w3-border w3-border-red">
 	<p class="w3-text-white w3-center"><?php echo $msg?></p>
 </div>
-<?php require('inc/footer.php')?>
+<?php require('footer.inc.php')?>

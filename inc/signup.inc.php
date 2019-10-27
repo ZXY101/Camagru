@@ -6,7 +6,7 @@
 
 	if (isset($_SESSION['logged_in']))
 	{
-		header('Location: index.php');
+		header('Location: /Camagru/index.php');
 	}
 
 	if (filter_has_var(INPUT_POST, 'submit')){
@@ -98,18 +98,19 @@
 
 				//Send the verification email
 				$toEmail = $email;
-				$subject = 'Camagru Email Verification'.$name;
+				$subject = 'Camagru Email Verification';
 				$body = '<h2>Verify your email</h2>
 				<p>Thank you for registering to Camagru, to verify your email adress please follow this link:</p>
-				<a href="http://localhost/Camagru/verify.php?vkey='.$vkey.'">Verify Email</a>';
+				<a href="http://localhost/Camagru/inc/verify.php?vkey='.$vkey.'">Verify Email</a>';
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-Type:text/html;charset=UTF-8"."\r\n";
-				$headers .= "From: " . $name. "<".$email.">"."\r\n";
+				//$headers .= "From: <no-reply@camagru.com>"."\r\n";
+				$headers .= "From: <".$email.">"."\r\n";
 
 				if (mail($toEmail, $subject, $body, $headers)){
 					$msg = 'Success';
 					$msgClass = 'w3-panel w3-pale-green w3-border';
-					header('Location: success.php');
+					header('Location: /Camagru/index.php?page=success.inc.php');
 				}else{
 					$msg = 'Email Failed To Send';
 					$msgClass = 'w3-panel w3-pale-red w3-border';
@@ -128,14 +129,14 @@
 
 ?>
 
-<?php $page_title = 'Camagru - Welcome!';require('inc/header.php')?>
+<?php $page_title = 'Camagru - Welcome!';require('inc/header.inc.php')?>
 <div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red">
 	<?php if($msg != ''): ?>
 		<div class="<?php echo $msgClass; ?>">
 			<?php echo $msg?>
 		</div>
 	<?php endif?>
-	<form class="w3-container w3-card-4" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" method="post">
+	<form class="w3-container w3-card-4" action="" method="post">
 		<h2 class="w3-text-red">Sign Up</h2>
 		<p>
 			<label class="w3-text-red"><b>First Name</b></label>
@@ -166,4 +167,4 @@
 		<p><input type="submit" name="submit" value="Register" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border"></p>
 	</form>
 </div>
-<?php require('inc/footer.php')?>
+<?php require('inc/footer.inc.php')?>

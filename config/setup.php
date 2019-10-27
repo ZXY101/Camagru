@@ -1,5 +1,7 @@
 <?php
 	require('database.php');
+	session_start();
+	session_destroy();
 
 	//Delete the DB is it exists then create/recreate it
 	try {
@@ -84,7 +86,17 @@
 			FOREIGN KEY (user_id) REFERENCES users(id)
 		)';
 		$pdo->exec($sql);
-		echo ('Vkey Table Created!(temp)<br>');
+		echo ('Vkey Table Created!<br>');
+
+		$sql = 'CREATE TABLE rkey(
+			id INT AUTO_INCREMENT,
+			user_id INT NOT NULL,
+			rkey VARCHAR(255) NOT NULL,
+			PRIMARY KEY (id),
+			FOREIGN KEY (user_id) REFERENCES users(id)
+		)';
+		$pdo->exec($sql);
+		echo ('Rkey Table Created!<br>');
 
 		$pdo = null;
 	}catch(PDOException $e){
