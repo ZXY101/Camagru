@@ -6,7 +6,7 @@
 
 	if (isset($_SESSION['logged_in']))
 	{
-		header('Location: ../Camagru/index.php');
+		header('Location: /Camagru/index.php');
 	}
 
 	if (isset($_GET['rkey'])){
@@ -81,7 +81,7 @@
 	}
 ?>
 
-<?php $page_title = 'Camagru - Welcome!';require('header.inc.php')?>
+<?php $page_title = 'Camagru - Reset Password!';require('header.inc.php')?>
 <div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red">
 	<?php if($msg != ''): ?>
 		<div class="<?php echo $msgClass; ?>">

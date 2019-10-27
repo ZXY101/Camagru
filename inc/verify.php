@@ -3,7 +3,7 @@
 	$msg = 'Oops, Something went wrong';
 	session_start();
 	if (isset($_SESSION['logged_in'])){
-		header('Location: ../Camagru/index.php');
+		header('Location: /Camagru/index.php');
 	}
 	
 	if (isset($_GET['vkey'])){
@@ -43,7 +43,7 @@
 	}
 ?>
 
-<?php $page_title = 'Camagru - Welcome!';require('header.inc.php')?>
+<?php $page_title = 'Camagru - Verified!';require('header.inc.php')?>
 <div class="w3-container w3-padding signup w3-display-middle w3-half w3-border w3-border-red">
 	<p class="w3-text-white w3-center"><?php echo $msg?></p>
 </div>

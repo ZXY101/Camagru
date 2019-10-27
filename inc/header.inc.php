@@ -16,7 +16,7 @@
 	<link rel="stylesheet" href="/Camagru/css/camagru.css">
 </head>
 <body>
-<div id="header">
+<div id="header" class="w3-hide-small">
 	<div class="w3-bar w3-black w3-card w3-border-bottom w3-border-red">
 		<a href="/Camagru/index.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium ">Camagru</a>
 		<?php if(!isset($_SESSION['user'])):?>

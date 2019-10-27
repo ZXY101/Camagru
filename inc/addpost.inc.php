@@ -6,7 +6,7 @@
 
 	if (!isset($_SESSION['logged_in']))
 	{
-		header('Location: login.inc.php');
+		header('Location: /Camagru/index.php?page=login.inc.php');
 	}
 
 	if (filter_has_var(INPUT_POST, 'submit')){
