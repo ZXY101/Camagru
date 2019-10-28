@@ -35,6 +35,7 @@
 			password VARCHAR(255) NOT NULL,
 			display_picture VARCHAR(255),
 			registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+			notifications TINYINT(1) DEFAULT 1,
 			is_verified TINYINT(1) DEFAULT 0,
 			is_admin TINYINT(1) DEFAULT 0,
 			PRIMARY KEY(id),

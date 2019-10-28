@@ -3,6 +3,27 @@
 	if (!isset($_SESSION['logged_in'])){
 		header('Location: /Camagru/index.php?page=login.inc.php');
 	}
+
+	if (isset($_POST['email_pref']))
+	{
+		require('config/database.php');
+		if ($_SESSION['user']->notifications == 1){
+			$_SESSION['user']->notifications = 0;
+		}else{
+			$_SESSION['user']->notifications = 1;
+		}
+		try{
+			$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
+			$sql = 'UPDATE users SET notifications = :notifications WHERE id = :id';
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute(['notifications'=>$_SESSION['user']->notifications, 'id'=>$_SESSION['user']->id]);
+		}catch(PDOException $e){
+			echo $e->getMessage();
+		}
+		$pdo = null;
+		$stmt = null;
+		header("Location: /Camagru/index.php?page=profile.inc.php", true, 303);
+	}
 ?>
 
 <?php $page_title = 'Camagru - '.$_SESSION['user']->first_name." ".$_SESSION['user']->last_name."'s Profile".'!';require('inc/header.inc.php')?>
@@ -30,8 +51,13 @@
 		<p>Password: <span class="w3-text-red">••••••••</span></p>
 	</div>
 	<div class="w3-text-white">
-		<a href="#" class="w3-hover-red w3-black w3-right">Change</a>
-		<p>Email Preference: <span class="w3-text-red">Send Notifications</span></p>
+		<form action="" method="post">
+			<label for="email_pref">
+				<span href="#" class="w3-hover-red w3-black w3-right email_pref">Change</span>
+			</label>
+			<input type="submit" name="email_pref" id="email_pref" style="display: none">
+		</form>
+		<p>Email Preference: <span class="w3-text-red"><?php echo $_SESSION['user']->notifications == 0 ? 'No Notifications' : 'Send Notifications'?></span></p>
 	</div>
 
 </div>

@@ -2,14 +2,14 @@
 	$msg = '';
 	$msgClass = '';
 	session_start();
-	require('config/database.php');
-
+	
 	if (isset($_SESSION['logged_in']))
 	{
 		header('Location: /Camagru/index.php');
 	}
-
+	
 	if (filter_has_var(INPUT_POST, 'submit')){
+		require('config/database.php');
 		//Store all of the fields in variables and clean up the input
 		$firstName = ucwords(strtolower(trim(htmlspecialchars($_POST['first_name']))));
 		$lastName = ucwords(strtolower(trim(htmlspecialchars($_POST['last_name']))));
@@ -130,7 +130,7 @@
 ?>
 
 <?php $page_title = 'Camagru - Sign Up!';require('inc/header.inc.php')?>
-<div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red">
+<div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red mobile">
 	<?php if($msg != ''): ?>
 		<div class="<?php echo $msgClass; ?>">
 			<?php echo $msg?>
@@ -139,28 +139,28 @@
 	<form class="w3-container w3-card-4" action="" method="post">
 		<h2 class="w3-text-red">Sign Up</h2>
 		<p>
-			<label class="w3-text-red"><b>First Name</b></label>
+			<label class="w3-text-red bold">First Name</label>
 			<input class="w3-input w3-border w3-black" name="first_name" type="text" placeholder="First Name" required value="<?php echo isset($_POST['first_name']) ? $firstName : ''; ?>">
 		</p>
 		<p>
-			<label class="w3-text-red"><b>Last Name</b></label>
+			<label class="w3-text-red bold">Last Name</label>
 			<input class="w3-input w3-border w3-black" name="last_name" type="text" placeholder="Last Name" required value="<?php echo isset($_POST['last_name']) ? $lastName : ''; ?>">
 		</p>
 		<p>
 		<p>
-			<label class="w3-text-red"><b>User Name</b></label>
+			<label class="w3-text-red bold">User Name</label>
 			<input class="w3-input w3-border w3-black" name="user_name" type="text" placeholder="User Name" required value="<?php echo isset($_POST['user_name']) ? $userName : ''; ?>">
 		</p>
 		<p>
-			<label class="w3-text-red"><b>Email</b></label>
+			<label class="w3-text-red bold">Email</label>
 			<input class="w3-input w3-border w3-black" name="email" type="email" placeholder="Email" required value="<?php echo isset($_POST['email']) ? $email : ''; ?>">
 		</p>
 		<p>
-			<label class="w3-text-red"><b>Password</b></label>
+			<label class="w3-text-red bold">Password</label>
 			<input class="w3-input w3-border w3-black" name="password" type="password" placeholder="Password" required >
 		</p>
 		<p>
-			<label class="w3-text-red"><b>Re-enter Password</b></label>
+			<label class="w3-text-red bold">Re-enter Password</label>
 			<input class="w3-input w3-border w3-black" name="password_2" type="password" placeholder="Re-enter Password" required>
 		</p>
 		

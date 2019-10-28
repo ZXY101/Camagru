@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'CyberpunkWaifus';
 	src: url('../fonts/CyberpunkWaifus.woff') format('woff'); /* Pretty Modern Browsers */
-  }
+}
 
 html, body, h1, h2, h3, h4, h5, h6{
 	/* font-family: 'Advent Pro', sans-serif; */
@@ -28,20 +28,42 @@ textarea {
 	position: fixed;
 	top: 0;
 	width: 100%
-  }
-  
-  /* Add some top padding to the page content to prevent sudden quick movement (as the header gets a new position at the top of the page (position:fixed and top:0) */
-  .sticky + .content {
+}
+
+.sticky + .content {
 	padding-top: 102px;
-  }
+}
 
 .image-upload > input
 {
-    display: none;
+	display: none;
 }
 
 .image-upload img
 {
-    width: 80px;
-    cursor: pointer;
+	width: 80px;
+	cursor: pointer;
+}
+
+.email_pref{
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+@media (max-height: 840px){
+	html, body, h1, h2, h3, h4, h5, h6{
+		font-size: 20px;
+	}
+
+	.w3-display-middle{
+		position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%);
+	}
+
+	#header{
+		display: none;
+	}
+
+	div{
+		display: block;
+	}
 }
