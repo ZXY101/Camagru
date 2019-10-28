@@ -44,10 +44,10 @@
 		echo ('Users Table Created!<br>');
 
 		//Insert some default users into the 'users' table
-		$sql = 'INSERT INTO users(user_name, first_name, last_name, email, password, is_verified, is_admin)
-				VALUES("admin", "admin", "admin", "admin@camagru.com", "'.password_hash("admin", PASSWORD_DEFAULT).'", 1, 1),
-				("stenner", "Shaun", "Tenner", "stenner@student.wethinkcode.co.za","'.password_hash("123four56", PASSWORD_DEFAULT).'", 1, 0),
-				("petepete", "Pete", "Peterson", "peterpete11@emailer.com", "'.password_hash("pete11pete", PASSWORD_DEFAULT).'", 1, 0)';
+		$sql = 'INSERT INTO users(user_name, first_name, last_name, email, password, is_verified, is_admin, display_picture)
+				VALUES("admin", "admin", "admin", "admin@camagru.com", "'.password_hash("admin", PASSWORD_DEFAULT).'", 1, 1, "/Camagru/images/display_pictures/EvergreenUnluckyBubblefish-small.gif"),
+				("stenner", "Shaun", "Tenner", "stenner@student.wethinkcode.co.za","'.password_hash("123four56", PASSWORD_DEFAULT).'", 1, 0, "/Camagru/images/display_pictures/Anime--gif-kmnz-4830714.gif"),
+				("petepete", "Pete", "Peterson", "peterpete11@emailer.com", "'.password_hash("pete11pete", PASSWORD_DEFAULT).'", 1, 0, "/Camagru/images/display_pictures/Flandre.Scarlet.full.2211184.gif")';
 		$pdo->exec($sql);
 		echo ('Base Users Created!<br>');
 
