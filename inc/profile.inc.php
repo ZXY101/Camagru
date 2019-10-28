@@ -59,6 +59,5 @@
 		</form>
 		<p>Email Preference: <span class="w3-text-red"><?php echo $_SESSION['user']->notifications == 0 ? 'No Notifications' : 'Send Notifications'?></span></p>
 	</div>
-
 </div>
 <?php require('inc/footer.inc.php')?>

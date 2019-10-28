@@ -14,6 +14,7 @@
 
 <?php $page_title = 'Camagru - Welcome!';require('inc/header.inc.php')?>
 <div class="w3-container w3-center">
+	<h2 class="w3-padding w3-text-red">Feed</h2>
 	<?php foreach ($posts as $post):?>
 	<div class="w3-card w3-margin w3-border w3-border-red">
 		<p class="w3-text-red"><?php echo $post->title?></p>
