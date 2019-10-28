@@ -49,7 +49,7 @@
 		<?php endif?>
 	</div>
 	
-	<button class="w3-button w3-black w3-hover-red w3-xlarge burger" onclick="open_sidebar()">☰</button>
+	<button class="w3-button w3-black w3-hover-red w3-xlarge burger w3-opacity" onclick="open_sidebar()">☰</button>
 </div>
 <script src="/Camagru/js/sidebar.js"></script>
 
