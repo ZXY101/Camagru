@@ -106,7 +106,7 @@
 			<label class="w3-text-red"><b>Re-enter Email</b></label>
 			<input class="w3-input w3-border w3-black" name="email2" type="email" placeholder="Re-enter Email" required>
 		</p>
-		<p><input type="submit" name="submit" value="Change" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border" onclick="return confirm('Are you sure?')></p>
+		<p><input type="submit" name="submit" value="Change" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border"></p>
 	</form>
 </div>
 <?php require('footer.inc.php')?>

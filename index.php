@@ -21,6 +21,9 @@
 			case 'changeemail.inc.php':
 				include('inc/changeemail.inc.php');
 				break;
+			case 'changeusername.inc.php':
+				include('inc/changeusername.inc.php');
+				break;
 			case 'success.inc.php':
 				include('inc/success.inc.php');
 				break;

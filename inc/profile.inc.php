@@ -39,7 +39,7 @@
 		</p>
 	</div>
 	<div class="w3-text-white w3-border-bottom w3-border-white">
-		<a href="#" class="w3-hover-red w3-black w3-right">Change</a>
+		<a href="/Camagru/index.php?page=changeusername.inc.php" class="w3-hover-red w3-black w3-right">Change</a>
 		<p>User Name: <span class="w3-text-red"><?php echo $_SESSION['user']->user_name?></span></p>
 	</div>
 	<div class="w3-text-white w3-border-bottom w3-border-white">
