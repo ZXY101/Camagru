@@ -43,7 +43,7 @@
 			}else if (!ctype_alpha($lastName)){
 				$msg = 'Please enter a valid last name';
 				$msgClass = 'w3-panel w3-pale-red w3-border';
-			}else if (!ctype_alnum($userName) || !preg_match("[a-z]/", $userName)){
+			}else if (!ctype_alnum($userName) || !preg_match("@[a-z]@", $userName)){
 				$msg = 'Please enter a valid username';
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if ($username_found){
