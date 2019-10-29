@@ -43,7 +43,7 @@
 			}else if (!ctype_alpha($lastName)){
 				$msg = 'Please enter a valid last name';
 				$msgClass = 'w3-panel w3-pale-red w3-border';
-			}else if (!ctype_alnum($userName) || !preg_match("@[a-z]@", $userName)){
+			}else if (!ctype_alnum($userName) || !preg_match("[a-z]/", $userName)){
 				$msg = 'Please enter a valid username';
 				$msgClass = 'w3-panel w3-pale-red w3-border';
 			}else if ($username_found){
@@ -101,11 +101,11 @@
 				$subject = 'Camagru Email Verification';
 				$body = '<h2>Verify your email</h2>
 				<p>Thank you for registering to Camagru, to verify your email adress please follow this link:</p>
-				<a href="http://localhost/Camagru/inc/verify.php?vkey='.$vkey.'">Verify Email</a>';
+				<a href="http://localhost:8080/Camagru/inc/verify.php?vkey='.$vkey.'">Verify Email</a>';
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-Type:text/html;charset=UTF-8"."\r\n";
-				//$headers .= "From: <no-reply@camagru.com>"."\r\n";
-				$headers .= "From: <".$email.">"."\r\n";
+				$headers .= "From: <no-reply@camagru.com>"."\r\n";
+				//$headers .= "From: <".$email.">"."\r\n";
 
 				if (mail($toEmail, $subject, $body, $headers)){
 					$msg = 'Success';

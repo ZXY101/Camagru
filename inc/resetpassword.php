@@ -57,7 +57,7 @@
 								$stmt = $pdo->prepare($sql);
 								$stmt->execute([$user->user_id]);
 								$msg = 'Password Successfully Reset<br>Redirecting...';
-								header('Refresh: 5; URL=http://localhost/Camagru/index.php?page=login.inc.php');
+								header('Refresh: 5; URL=http://localhost:8080/Camagru/index.php?page=login.inc.php');
 
 
 							}
