@@ -15,6 +15,12 @@
 			case 'forgotpassword.inc.php':
 				include('inc/forgotpassword.inc.php');
 				break;
+			case 'changepassword.inc.php':
+				include('inc/changepassword.inc.php');
+				break;
+			case 'changeemail.inc.php':
+				include('inc/changeemail.inc.php');
+				break;
 			case 'success.inc.php':
 				include('inc/success.inc.php');
 				break;

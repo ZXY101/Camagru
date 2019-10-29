@@ -87,7 +87,7 @@
 		<div class="<?php echo $msgClass; ?>">
 			<p class="w3-text-white w3-center"><?php echo $msg?></p>
 		</div>
-<?php else:?>
+	<?php else:?>
 	<?php if($msg2 != ''): ?>
 		<div class="<?php echo $msgClass; ?>">
 			<?php echo $msg2?>
