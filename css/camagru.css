@@ -11,7 +11,7 @@ html, body, h1, h2, h3, h4, h5, h6{
 }
 
 .feed{
-	word-break: break-all;
+	word-break: break-word;
 }
 
 h2{
@@ -31,7 +31,8 @@ textarea {
 .sticky {
 	position: fixed;
 	top: 0;
-	width: 100%
+	width: 100%;
+	z-index: 3;
 }
 
 .sticky + .content {
@@ -72,6 +73,10 @@ textarea {
 @media (max-height: 840px){
 	.w3-display-middle{
 		position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%);
+	}
+
+	.hideme{
+		display: none;
 	}
 
 	#header{
