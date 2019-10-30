@@ -78,7 +78,7 @@
 		}
 		$pdo = null;
 		$stmt = null;
-		header("Location: /Camagru/index.php?page=profile.inc.php", true, 303);
+		header('Refresh: 2; URL=http://localhost:8080/Camagru/index.php?page=profile.inc.php', true, 303);
 	}
 
 	//Change the email notification preference
