@@ -18,7 +18,7 @@
 	<br class="w3-hide-medium w3-hide-small hideme">
 	<h2 class="w3-padding w3-text-red">Feed</h2>
 	<?php foreach ($posts as $post):?>
-	<div class="w3-card w3-margin w3-border w3-border-red">
+	<div class="w3-card w3-margin w3-padding w3-border w3-border-red">
 		<p class="w3-text-red"><?php echo $post->title?></p>
 		<img class="w3-padding" src="<?php echo $post->image?>" style="max-width: 100%" alt="">
 		<p class="w3-text-white"><?php echo $post->body?></p>
