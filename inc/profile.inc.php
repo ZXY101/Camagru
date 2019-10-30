@@ -1,10 +1,14 @@
 <?php
 	session_start();
+	$msg = "";
+	$msgClass = "";
 	if (!isset($_SESSION['logged_in'])){
 		header('Location: /Camagru/index.php?page=login.inc.php');
 	}
+
+	//Change display picture
 	if (isset($_FILES["change_dp"]["name"])){
-		$dir = "/Camagru/images/display_pictures";
+		$dir = "images/display_pictures/";
 		$file = $dir.basename($_FILES["change_dp"]["name"]);
 		$uploadable = 1;
 		$imgFileType = strtolower(pathinfo($file, PATHINFO_EXTENSION));
@@ -12,15 +16,72 @@
 		if (isset($_FILES["change_dp"]["name"])){
 			$check = getimagesize($_FILES["change_dp"]["tmp_name"]);
 			if ($check !== false){
-				echo "File is an image - ".$check['mime'].".";
+				$msg = "File is an image - ".$check['mime'].".";
+				$msgClass = 'w3-panel w3-pale-green w3-border';
 				$uploadable = 1;
 			}else{
-				echo "File is not an image";
+				$msg = "File is not an image";
+				$msgClass = 'w3-panel w3-pale-red w3-border';
 				$uploadable = 0;
 			}
 		}
+
+		if (file_exists($file)) {
+			try{
+				require('config/database.php');
+				$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
+
+				$sql = "UPDATE users SET display_picture = :dp WHERE id = :id";
+				$stmt = $pdo->prepare($sql);
+				$stmt->execute(['dp'=>'/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"], 'id'=>$_SESSION['user']->id]);
+				$_SESSION['user']->display_picture = '/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"];
+			}catch(PDOException $e){
+				$msg = $e.getMessage();
+			}
+			$msg = "Display picture successfully updated";
+			$msgClass = 'w3-panel w3-pale-green w3-border';
+			$uploadable = 0;
+		}
+
+		if ($_FILES["change_dp"]["size"] > 5000000) {
+			$msg = "File is too large";
+			$msgClass = 'w3-panel w3-pale-red w3-border';
+			$uploadable = 0;
+		}
+
+		if($imgFileType != "jpg" && $imgFileType != "png" && $imgFileType != "jpeg" && $imgFileType != "gif" ) {
+			$msg =  "Only JPG, JPEG, PNG & GIF files are allowed.";
+			$msgClass = 'w3-panel w3-pale-red w3-border';
+			$uploadable = 0;
+		}
+		
+		if ($uploadable == 1){
+			if (move_uploaded_file($_FILES["change_dp"]["tmp_name"], $file)){
+				//Update in DB
+				try{
+					require('config/database.php');
+					$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
+
+					$sql = "UPDATE users SET display_picture = :dp WHERE id = :id";
+					$stmt = $pdo->prepare($sql);
+					$stmt->execute(['dp'=>'/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"], 'id'=>$_SESSION['user']->id]);
+					$_SESSION['user']->display_picture = '/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"];
+				}catch(PDOException $e){
+					$msg = $e.getMessage();
+				}
+				$msg = "Display picture successfully updated";
+				$msgClass = 'w3-panel w3-pale-green w3-border';
+			}else{
+				$msg = "Failed";
+				$msgClass = 'w3-panel w3-pale-red w3-border';
+			}
+		}
+		$pdo = null;
+		$stmt = null;
+		header("Location: /Camagru/index.php?page=profile.inc.php", true, 303);
 	}
 
+	//Change the email notification preference
 	if (isset($_POST['email_pref']))
 	{
 		require('config/database.php');
@@ -45,6 +106,11 @@
 
 <?php $page_title = 'Camagru - '.$_SESSION['user']->first_name." ".$_SESSION['user']->last_name."'s Profile".'!';require('inc/header.inc.php')?>
 <div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red ">
+	<?php if($msg != ''): ?>
+		<div class="<?php echo $msgClass; ?>">
+			<?php echo $msg?>
+		</div>
+	<?php endif?>
 	<p class="w3-text-red w3-center"><?php echo $_SESSION['user']->first_name." ".$_SESSION['user']->last_name."'s Profile"?></p>
 	<div class="w3-text-white w3-border-bottom w3-border-white">
 		<p>Display Picture:</p>
