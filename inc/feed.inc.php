@@ -19,6 +19,7 @@
 	<div class="w3-card w3-margin w3-border w3-border-red">
 		<p class="w3-text-red"><?php echo $post->title?></p>
 		<p class="w3-text-white"><?php echo $post->body?></p>
+		<img src="<?php echo $post->display_picture?>" width="20px" class="w3-circle">
 		<small class="w3-text-white"><?php echo $post->user_name?>, on <?php echo $post->published_at?></small>
 	</div>
 	<?php endforeach?>
