@@ -3,6 +3,23 @@
 	if (!isset($_SESSION['logged_in'])){
 		header('Location: /Camagru/index.php?page=login.inc.php');
 	}
+	if (isset($_FILES["change_dp"]["name"])){
+		$dir = "/Camagru/images/display_pictures";
+		$file = $dir.basename($_FILES["change_dp"]["name"]);
+		$uploadable = 1;
+		$imgFileType = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+
+		if (isset($_FILES["change_dp"]["name"])){
+			$check = getimagesize($_FILES["change_dp"]["tmp_name"]);
+			if ($check !== false){
+				echo "File is an image - ".$check['mime'].".";
+				$uploadable = 1;
+			}else{
+				echo "File is not an image";
+				$uploadable = 0;
+			}
+		}
+	}
 
 	if (isset($_POST['email_pref']))
 	{
@@ -35,7 +52,10 @@
 			<label for="change_dp">
 				<img src="<?php echo is_null($_SESSION['user']->display_picture) ? 'https://upload.wikimedia.org/wikipedia/commons/7/72/Default-welcomer.png' : $_SESSION['user']->display_picture?>" class="w3-circle w3-image w3-border w3-border-white w3-margin w3-hover-sepia" style="width:100%;max-width:200px; height:200px" alt="">
 			</label>
-			<input type="file" accept="image/*" name="change_dp" id="change_dp" class="w3-input">
+			<form method="post" action="" enctype="multipart/form-data" id="form_dp">
+				<input type="file" accept="image/*" name="change_dp" id="change_dp" class="w3-input" style="display:none" onchange="form.submit()">
+			</form>
+
 		</p>
 	</div>
 	<div class="w3-text-white w3-border-bottom w3-border-white">
