@@ -64,6 +64,11 @@ textarea {
 	z-index: 3;
 }
 
+.wc{
+	width: 100%;
+	max-width: 450px;
+}
+
 @media (max-width: 993px){
 	.sidebar{
 		display: block;

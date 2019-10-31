@@ -109,12 +109,15 @@
 		<p>
 			<label class="w3-text-red "><b>Image</b></label>
 			<p>
-				<input class="w3-border w3-black w3-input w3-hover-red" name="image" id="image_up" type="file" required>
+				<input class="w3-border w3-black w3-input w3-hover-red w3-text-white" name="image" id="image_up" type="file" required>
 				<p class="w3-text-red w3-center" id="or">Or</p>
 				<button type="button" id="webcam_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" onclick="open_webcam()">Use Webcam</button>
 				<div class="w3-center" id="webcam" style="display: none">
-					<video id="video" class="w3-border w3-border-red w3-image">Stream Not Available...</video>
-					<button type="button" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border">Take Photo</button>
+					<div id="wc_img" class="w3-margin">
+					</div>
+					<video id="video" class="wc w3-border w3-border-red w3-image">Stream Not Available...</video>
+					<canvas id="canvas" class="wc 3-border w3-border-red w3-image" style="display: none"></canvas>
+					<button type="button" id="photo_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border">Take Photo</button>
 				</div>
 				<button type="button" id="back_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display: none" onclick="back_webcam()">Back</button>
 			</p>

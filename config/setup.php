@@ -3,7 +3,7 @@
 	session_start();
 	session_destroy();
 
-	//Delete the DB is it exists then create/recreate it
+	//Delete the DB if it exists then create/recreate it
 	try {
 		$pdo = connectDB($DB_DSN_NONAME, $DB_USER, $DB_PASSWORD);
 
