@@ -15,20 +15,16 @@ const imup = document.getElementById("image_up");
 const video = document.getElementById("video");
 const canvas = document.getElementById("canvas");
 const photoBtn = document.getElementById("photo_btn");
+const clearBtn = document.getElementById("clear_btn");
+const submitBtn = document.getElementById('submit_btn');
+const inputBtn = document.getElementById('submit_input');
 const wc_img = document.getElementById('wc_img');
 
+let wc_stream;
 let width = 500;
 let height = 0;
 let streaming = false;
-
-navigator.mediaDevices.getUserMedia({video: true, audio: false})
-	.then(function(stream){
-		video.srcObject = stream;
-		video.play()
-	})
-	.catch(function(error){
-		console.log('Error: '+error);
-})
+let using_wc = false;
 
 video.addEventListener('canplay', function(e){
 	if (!streaming){
@@ -45,7 +41,11 @@ video.addEventListener('canplay', function(e){
 
 photoBtn.addEventListener('click', function(e){
 	takePicture();
+	e.preventDefault();
+}, false);
 
+clearBtn.addEventListener('click', function(e){
+	clearPicture();
 	e.preventDefault();
 }, false);
 
@@ -70,9 +70,20 @@ function takePicture(){
 
 		img.setAttribute('src', imgUrl);
 
+		if (wc_img.childNodes[0])
+			wc_img.removeChild(wc_img.childNodes[0]);
 		wc_img.appendChild(img);
-
+		photoBtn.style.display = 'none';
+		clearBtn.style.display = 'block';
 	}
+}
+
+function clearPicture (){
+	photoBtn.style.display = 'block';
+	clearBtn.style.display = 'none';
+	video.style.display = 'inline-block';
+	if (wc_img.childNodes[0])
+			wc_img.removeChild(wc_img.childNodes[0]);
 }
 
 
@@ -83,7 +94,21 @@ function open_webcam(){
 	document.getElementById("back_btn").style.display = "block";
 	document.getElementById("webcam").style.display = "block";
 
+	navigator.mediaDevices.getUserMedia({video: true, audio: false})
+	.then(function(stream){
+		video.srcObject = stream;
+		wc_stream = stream;
+		video.play()
+	})
+	.catch(function(error){
+		console.log('Error: '+error);
+	})
+
+	submitBtn.style.display = 'block';
+	inputBtn.style.display = 'none';
+
 	imup.required = false;
+	using_wc = true;
 }
 
 function back_webcam(){
@@ -93,5 +118,13 @@ function back_webcam(){
 	document.getElementById("back_btn").style.display = "none";
 	document.getElementById("webcam").style.display = "none";
 
+	wc_stream.getTracks().forEach(function(track) {
+		track.stop();
+	  });
+
+	submitBtn.style.display = 'none';
+	inputBtn.style.display = 'block';
+
 	imup.required = true;
+	using_wc = false;
 }

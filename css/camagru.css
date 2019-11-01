@@ -66,7 +66,7 @@ textarea {
 
 .wc{
 	width: 100%;
-	max-width: 450px;
+	max-width: 390px;
 }
 
 @media (max-width: 993px){
@@ -75,7 +75,7 @@ textarea {
 	}
 }
 
-@media (max-height: 840px){
+@media (max-height: 940px){
 	.w3-display-middle{
 		position:absolute;left:50%;top:0;transform:translate(-50%,0%);-ms-transform:translate(-50%,0%);
 	}

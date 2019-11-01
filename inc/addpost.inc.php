@@ -113,11 +113,11 @@
 				<p class="w3-text-red w3-center" id="or">Or</p>
 				<button type="button" id="webcam_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" onclick="open_webcam()">Use Webcam</button>
 				<div class="w3-center" id="webcam" style="display: none">
-					<div id="wc_img" class="w3-margin">
-					</div>
+					<div id="wc_img" class="w3-margin"></div>
 					<video id="video" class="wc w3-border w3-border-red w3-image">Stream Not Available...</video>
 					<canvas id="canvas" class="wc 3-border w3-border-red w3-image" style="display: none"></canvas>
 					<button type="button" id="photo_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border">Take Photo</button>
+					<button type="button" id="clear_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display: none">Clear</button>
 				</div>
 				<button type="button" id="back_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display: none" onclick="back_webcam()">Back</button>
 			</p>
@@ -128,7 +128,10 @@
 		</p>
 
 		
-		<p><input type="submit" name="submit" value="Post" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border"></p>
+		<p>
+			<input type="submit" name="submit" id="submit_input" value="Post" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border">
+			<button type="button" id="submit_btn" class=" w3-button w3-hover-red w3-padding-medium w3-black w3-border" style="display: none">Post</button>
+		</p>
 	</form>
 </div>
 <?php require('inc/footer.inc.php')?>
