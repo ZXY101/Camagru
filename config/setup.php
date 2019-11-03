@@ -54,13 +54,13 @@
 
 		//Create the 'posts' table
 		$sql = 'CREATE TABLE posts(
-			id INT AUTO_INCREMENT,
+			post_id INT AUTO_INCREMENT,
 			user_id INT NOT NULL,
 			title VARCHAR(255) NOT NULL,
 			image VARCHAR(255),
 			body TEXT NOT NULL,
 			published_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-			PRIMARY KEY (id),
+			PRIMARY KEY (post_id),
 			FOREIGN KEY (user_id) REFERENCES users(id)
 		)';
 		$pdo->exec($sql);

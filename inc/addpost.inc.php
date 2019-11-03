@@ -72,7 +72,6 @@
 				try{
 					$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
 
-					//Search the DB for the user
 					$sql = 'INSERT INTO posts(user_id, title, image, body)
 							VALUES(:user_id, :title, :image, :body)';
 					$stmt = $pdo->prepare($sql);
@@ -100,11 +99,11 @@
 			<?php echo $msg?>
 		</div>
 	<?php endif?>
-	<form class="w3-container w3-card-4" action="" method="post" enctype="multipart/form-data">
+	<form class="w3-container w3-card-4" id="img_form" action="" method="post" enctype="multipart/form-data">
 		<h2 class="w3-text-red">Add Post</h2>
 		<p>
 			<label class="w3-text-red"><b>Title</b></label>
-			<input class="w3-input w3-border w3-black" name="title" type="text" placeholder="Title" required value="<?php echo isset($_POST['title']) ? $title : ''; ?>">
+			<input class="w3-input w3-border w3-black" name="title" id="img_title" type="text" placeholder="Title" required value="<?php echo isset($_POST['title']) ? $title : ''; ?>">
 		</p>
 		<p>
 			<label class="w3-text-red "><b>Image</b></label>
@@ -115,6 +114,7 @@
 				<div class="w3-center" id="webcam" style="display: none">
 					<div id="wc_img" class="w3-margin"></div>
 					<video id="video" class="wc w3-border w3-border-red w3-image">Stream Not Available...</video>
+					<img id="leimg"src="images/posts/517597060854317056.png" alt="">
 					<canvas id="canvas" class="wc 3-border w3-border-red w3-image" style="display: none"></canvas>
 					<button type="button" id="photo_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border">Take Photo</button>
 					<button type="button" id="clear_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display: none">Clear</button>
@@ -130,8 +130,8 @@
 		
 		<p>
 			<input type="submit" name="submit" id="submit_input" value="Post" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border">
-			<button type="button" id="submit_btn" class=" w3-button w3-hover-red w3-padding-medium w3-black w3-border" style="display: none">Post</button>
 		</p>
 	</form>
 </div>
+<script src="js/webcam.js"></script>
 <?php require('inc/footer.inc.php')?>
