@@ -114,7 +114,6 @@
 				<div class="w3-center" id="webcam" style="display: none">
 					<div id="wc_img" class="w3-margin"></div>
 					<video id="video" class="wc w3-border w3-border-red w3-image">Stream Not Available...</video>
-					<img id="leimg"src="images/posts/517597060854317056.png" alt="">
 					<canvas id="canvas" class="wc 3-border w3-border-red w3-image" style="display: none"></canvas>
 					<button type="button" id="photo_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border">Take Photo</button>
 					<button type="button" id="clear_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display: none">Clear</button>

@@ -14,6 +14,8 @@
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
 	<link rel="stylesheet" href="/Camagru/css/camagru.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
 </head>
 <body>
 <div id="header" class="w3-hide-medium w3-hide-small">
@@ -23,7 +25,7 @@
 			<a href="/Camagru/index.php?page=signup.inc.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right">Register</a>
 			<a href="/Camagru/index.php?page=login.inc.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right">Login</a>
 		<?php else:?>
-		<form method="post" action="inc/logout.php">
+		<form method="post" action="/Camagru/inc/logout.php">
 			<input type="submit" class="w3-bar-item w3-button w3-hover-red w3-padding-medium w3-right" value="Logout">
 		</form>
 		<a href="/Camagru/index.php?page=addpost.inc.php" class="w3-bar-item w3-button w3-hover-red w3-padding-medium">&#10010;</a>

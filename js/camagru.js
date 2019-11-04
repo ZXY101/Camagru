@@ -11,3 +11,23 @@ function myFunction() {
   }
 }
 
+function deletePost() {
+	let r = confirm("Are you sure?");
+	if (r == true) {
+		user_id = document.getElementById('user_id').value;
+		post_id = document.getElementById('post_id').value;
+		let params = "user_id="+user_id+"&post_id="+post_id;
+
+		let xhr = new XMLHttpRequest();
+		xhr.open('POST', '/Camagru/inc/delete_post.php', true);
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.onload = function(){
+			if (this.status == 200){
+				console.log(this.responseText);
+				window.location = '/Camagru/'
+			}
+		};
+
+		xhr.send(params);
+	}
+}

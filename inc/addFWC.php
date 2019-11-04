@@ -51,6 +51,6 @@
 			echo $e->getMessage();
 		}
 	}else{
-		require('404.php'); // provide your own HTML for the error page
+		require('404.php');
 	}
 ?>

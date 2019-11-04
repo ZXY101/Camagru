@@ -56,6 +56,15 @@ textarea {
 	right: 0;
 }
 
+.material-icons{
+	vertical-align: top;
+	cursor:pointer
+}
+
+.material-icons:hover{
+	color: #858585 ;	
+}
+
 .sidebar{
 	display: none;
 }

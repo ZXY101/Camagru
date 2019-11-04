@@ -64,7 +64,33 @@
 			FOREIGN KEY (user_id) REFERENCES users(id)
 		)';
 		$pdo->exec($sql);
-		echo ('Posts Table Created!(temp)<br>');
+		echo ('Posts Table Created!<br>');
+
+		//Create the 'comments' table
+		$sql = 'CREATE TABLE comments(
+			comment_id INT AUTO_INCREMENT,
+			user_id INT NOT NULL,
+			post_id INT NOT NULL,
+			comment TEXT NOT NULL,
+			posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+			PRIMARY KEY (comment_id),
+			FOREIGN KEY (user_id) REFERENCES users(id),
+			FOREIGN KEY (post_id) REFERENCES posts(post_id)
+		)';
+		$pdo->exec($sql);
+		echo ('Comments Table Created!<br>');
+
+		//Create the 'likes' table
+		$sql = 'CREATE TABLE likes(
+			like_id INT AUTO_INCREMENT,
+			user_id INT NOT NULL,
+			post_id INT NOT NULL,
+			PRIMARY KEY (like_id),
+			FOREIGN KEY (user_id) REFERENCES users(id),
+			FOREIGN KEY (post_id) REFERENCES posts(post_id)
+		)';
+		$pdo->exec($sql);
+		echo ('Likes Table Created!<br>');
 
 		//Create the 'friends' table
 		$sql = 'CREATE TABLE friends(

@@ -47,7 +47,7 @@
 						$headers = "MIME-Version: 1.0" . "\r\n";
 						$headers .= "Content-Type:text/html;charset=UTF-8"."\r\n";
 						$headers .= "From: <no-reply@camagru.com>"."\r\n";
-						//$headers .= "From: <".$user->email.">"."\r\n";
+						//$headers .= "From: <xzxy101x@gmail.com>"."\r\n";
 
 						if (mail($toEmail, $subject, $body, $headers)){
 							$msg = 'An email to reset your password has been sent';
