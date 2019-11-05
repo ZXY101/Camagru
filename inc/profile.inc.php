@@ -36,7 +36,7 @@
 				$stmt->execute(['dp'=>'/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"], 'id'=>$_SESSION['user']->id]);
 				$_SESSION['user']->display_picture = '/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"];
 			}catch(PDOException $e){
-				$msg = $e.getMessage();
+				$msg = $e->getMessage();
 			}
 			$msg = "Display picture successfully updated";
 			$msgClass = 'w3-panel w3-pale-green w3-border';
@@ -67,7 +67,7 @@
 					$stmt->execute(['dp'=>'/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"], 'id'=>$_SESSION['user']->id]);
 					$_SESSION['user']->display_picture = '/Camagru/images/display_pictures/'.$_FILES["change_dp"]["name"];
 				}catch(PDOException $e){
-					$msg = $e.getMessage();
+					$msg = $e->getMessage();
 				}
 				$msg = "Display picture successfully updated";
 				$msgClass = 'w3-panel w3-pale-green w3-border';

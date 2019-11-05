@@ -34,7 +34,7 @@
 			$pdo = null;
 			$stmt = null;
 		}catch(PDOException $e){
-			echo $e.getMessage();
+			echo $e->getMessage();
 		}
 
 
@@ -91,7 +91,7 @@
 				$stmt = null;
 				header('Location: /Camagru/inc/post.php?id='.$_GET['id']);
 			}catch(PDOException $e){
-				echo $e.getMessage();
+				echo $e->getMessage();
 			}
 			
 		}

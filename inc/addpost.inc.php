@@ -93,22 +93,25 @@
 ?>
 
 <?php $page_title = 'Camagru - Add Post!';require('inc/header.inc.php')?>
-<div class="w3-container w3-padding w3-display-middle w3-half w3-border w3-border-red">
+<div class="w3-container w3-display-topmiddle w3-half">
+	<br class="w3-hide-medium w3-hide-small hideme">
+	<br class="w3-hide-medium w3-hide-small hideme">
 	<?php if($msg != ''): ?>
 		<div class="<?php echo $msgClass; ?>">
 			<?php echo $msg?>
 		</div>
 	<?php endif?>
-	<form class="w3-container w3-card-4" id="img_form" action="" method="post" enctype="multipart/form-data">
-		<h2 class="w3-text-red">Add Post</h2>
-		<p>
-			<label class="w3-text-red"><b>Title</b></label>
-			<input class="w3-input w3-border w3-black" name="title" id="img_title" type="text" placeholder="Title" required value="<?php echo isset($_POST['title']) ? $title : ''; ?>">
-		</p>
-		<p>
-			<label class="w3-text-red "><b>Image</b></label>
+	<div>
+		<form class="w3-container w3-card-4 w3-border w3-border-red w3-margin" id="img_form" action="" method="post" enctype="multipart/form-data">
+			<h2 class="w3-text-red">Add Post</h2>
 			<p>
-				<input class="w3-border w3-black w3-input w3-hover-red w3-text-white" name="image" id="image_up" type="file" required>
+				<label class="w3-text-red"><b>Title</b></label>
+				<input class="w3-input w3-border w3-black" name="title" id="img_title" type="text" placeholder="Title" required value="<?php echo isset($_POST['title']) ? $title : ''; ?>">
+			</p>
+			<p>
+				<p><label class="w3-text-red "><b>Image</b></label></p>
+				<div class="w3-center" style="display:none" id="preview_div"><img id="preview" style="max-width:100%" class="w3-margin-bottom"></div>
+				<input class="w3-border w3-black w3-input w3-hover-red w3-text-white" name="image" id="image_up" type="file" required onchange="previewImg(event)">
 				<p class="w3-text-red w3-center" id="or">Or</p>
 				<button type="button" id="webcam_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" onclick="open_webcam()">Use Webcam</button>
 				<div class="w3-center" id="webcam" style="display: none">
@@ -120,17 +123,19 @@
 				</div>
 				<button type="button" id="back_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display: none" onclick="back_webcam()">Back</button>
 			</p>
-		</p>
-		<p>
-			<label class="w3-text-red"><b>Message</b></label>
-			<textarea class="w3-input w3-border w3-black" name="message" id="message" placeholder="Message"><?php echo isset($_POST['message']) ? $message : ''; ?></textarea>
-		</p>
+			<p>
+				<label class="w3-text-red"><b>Message</b></label>
+				<textarea class="w3-input w3-border w3-black" name="message" id="message" placeholder="Message"><?php echo isset($_POST['message']) ? $message : ''; ?></textarea>
+			</p>
+	
+			
+			<p>
+				<input type="submit" name="submit" id="submit_input" value="Post" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border">
+			</p>
+		<br class="w3-hide-medium w3-hide-small hideme">
 
-		
-		<p>
-			<input type="submit" name="submit" id="submit_input" value="Post" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border">
-		</p>
-	</form>
+		</form>
+	</div>
 </div>
 <script src="js/webcam.js"></script>
 <?php require('inc/footer.inc.php')?>

@@ -40,7 +40,7 @@
 						$_SESSION['user']->user_name = $userName;
 					}
 					catch(PDOException $e){
-						echo $e.getMessage();
+						echo $e->getMessage();
 					}
 				}
 			}

@@ -31,3 +31,33 @@ function deletePost() {
 		xhr.send(params);
 	}
 }
+
+function orderBy(){
+	let option = document.getElementById('orderBy').value;
+
+	let params = "order_by="+option;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', '/Camagru/index.php?page=feed.inc.php', true);
+	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhr.onload = function(){
+		if (this.status == 200){
+			document.documentElement.innerHTML = this.responseText;
+		}
+	};
+
+	xhr.send(params);
+}
+
+function previewImg(event) {
+	{
+		var reader = new FileReader();
+		reader.onload = function()
+		{
+		 var output = document.getElementById('preview');
+		 document.getElementById('preview_div').style.display = 'block';
+		 output.src = reader.result;
+		}
+		reader.readAsDataURL(event.target.files[0]);
+	}
+}

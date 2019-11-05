@@ -44,7 +44,7 @@
 						$msgClass = 'w3-panel w3-pale-green w3-border';
 					}
 					catch(PDOException $e){
-						echo $e.getMessage();
+						echo $e->getMessage();
 					}
 					}
 			}
