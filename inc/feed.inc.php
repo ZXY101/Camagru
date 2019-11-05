@@ -5,10 +5,25 @@
 	try{
 
 		$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
-		if (!isset($_POST['order_by']))
-			$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.published_at DESC';
-		else
-			$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY '.htmlspecialchars($_POST['order_by']);
+		$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.published_at DESC';
+		if (isset($_POST['order_by'])){
+			switch ($_POST['order_by']){
+				case 1:
+					$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.published_at DESC';
+					break;
+				case 2:
+					$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.published_at ASC';
+					break;
+				case 3:
+					$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.title DESC';
+					break;
+				case 4:
+					$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.title ASC';
+					break;
+				default:
+					$sql = 'SELECT * FROM posts INNER JOIN users ON users.id = posts.user_id ORDER BY posts.published_at DESC';
+			}
+		}
 		$stmt = $pdo->prepare($sql);
 		$stmt->execute();
 		$posts = $stmt->fetchAll();
@@ -28,10 +43,10 @@
 	<div class="w3-margin">
 		<select id="orderBy" class="w3-select  w3-black w3-border w3-border-red" name="option" onchange="orderBy()">
 			<option value="" disabled selected>Order By</option>
-			<option value="posts.published_at DESC">Upload Date DESC</option>
-			<option value="posts.published_at ASC">Upload Date ASC</option>
-			<option value="posts.title DESC">Title DESC</option>
-			<option value="posts.title ASC">Title ASC</option>
+			<option value="1">Upload Date DESC</option>
+			<option value="2">Upload Date ASC</option>
+			<option value="3">Title DESC</option>
+			<option value="4">Title ASC</option>
 		</select> 
 	</div>
 
