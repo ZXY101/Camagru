@@ -48,11 +48,11 @@
 	else
 		$postsOD = $postCount;
 		
-		if (isset($_POST['displayed_posts'])){
-			if (($_POST['displayed_posts'] + 5) >= $postCount)
-				$postsOD = $postCount;
-			else
-				$postsOD = $_POST['displayed_posts'] + 5;
+	if (isset($_POST['displayed_posts'])){
+		if (($_POST['displayed_posts'] + 5) >= $postCount)
+			$postsOD = $postCount;
+		else
+			$postsOD = $_POST['displayed_posts'] + 5;
 	}
 ?>
 

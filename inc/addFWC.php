@@ -20,28 +20,6 @@
 			$image = '/Camagru/images/posts/'.$filename.'.png';
 			file_put_contents('../images/posts/'.$filename.'.png', $data);
 			
-			///////////////////////////
-
-
-			$dest_image = imagecreatefrompng('../images/posts/'.$filename.'.png');
-
-            imagesavealpha($dest_image, true);
-            $trans_background = imagecolorallocatealpha($dest_image, 0, 0, 0, 127);
-			imagefill($dest_image, 0, 0, $trans_background);
-			
-			$b = imagecreatefrompng('../images/posts/517597060854317056.png');
-
-            imagecopy($dest_image, $b, 100, 100, 0, 0, 100, 100);
-			
-			header('Content-Type: image/png');
-			imagepng($dest_image, '../images/posts/'.$filename.'.png');
-			
-			imagedestroy($b);
-			imagedestroy($dest_image);
-			
-
-			///////////////////////
-
 			$sql = 'INSERT INTO posts(user_id, title, image, body)
 					VALUES(:user_id, :title, :image, :body)';
 			$stmt = $pdo->prepare($sql);

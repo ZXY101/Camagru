@@ -13,7 +13,6 @@ let height = 0;
 let streaming = false;
 let pic_taken = false;
 
-
 video.addEventListener('canplay', function(e){
 	if (!streaming){
 	height = video.videoHeight / (video.videoWidth / width);
@@ -39,17 +38,23 @@ clearBtn.addEventListener('click', function(e){
 
 
 let imgg;
+const context = canvas.getContext('2d');
+const stickers = document.getElementById('stickers');
 
 function takePicture(){
 	pic_taken = true;
-	const context = canvas.getContext('2d');
 	if (width && height){
 		canvas.width = width;
 		canvas.height = height;
-
-		video.style.display = 'none';
+		stickers.style.display = 'none';
 
 		context.drawImage(video, 0, 0, width, height);
+		if (sticker1)
+			context.drawImage(sticker1, 0, 0, 100, 100);
+		if (sticker2)
+			context.drawImage(sticker2, 200, 0, 100, 100);
+		if (sticker3)
+			context.drawImage(sticker3, 400, 0, 100, 100);
 		
 		const img = document.createElement('img');
 		const imgUrl = canvas.toDataURL('image/png');
@@ -69,6 +74,8 @@ function takePicture(){
 		wc_img.appendChild(img);
 		photoBtn.style.display = 'none';
 		clearBtn.style.display = 'block';
+		canvas.style.display = 'none';
+		video.style.display = 'none';
 	}
 }
 
@@ -97,6 +104,13 @@ function clearPicture (){
 	photoBtn.style.display = 'block';
 	clearBtn.style.display = 'none';
 	video.style.display = 'inline-block';
+	canvas.style.display = 'inline-block';
+	stickers.style.display = 'block';
+	sticker1 = null;
+	sticker2 = null;
+	sticker3 = null;
+
+	context.clearRect(0, 0, canvas.width, canvas.height);
 	if (wc_img.childNodes[0])
 			wc_img.removeChild(wc_img.childNodes[0]);
 }
@@ -106,8 +120,12 @@ function open_webcam(){
 	imup.style.display = "none";
 	document.getElementById("or").style.display = "none";
 	document.getElementById("webcam_btn").style.display = "none";
+	document.getElementById("preview_div").style.display = "none";
 	document.getElementById("back_btn").style.display = "block";
 	document.getElementById("webcam").style.display = "block";
+	canvas.style.display = 'inline-block';
+	video.style.display = 'inline-block';
+	stickers.style.display = 'block';
 
 	navigator.mediaDevices.getUserMedia({video: true, audio: false})
 	.then(function(stream){
@@ -127,6 +145,7 @@ function back_webcam(){
 	imup.style.display = "block";
 	document.getElementById("or").style.display = "block";
 	document.getElementById("webcam_btn").style.display = "block";
+	document.getElementById("preview_div").style.display = "block";
 	document.getElementById("back_btn").style.display = "none";
 	document.getElementById("webcam").style.display = "none";
 
@@ -137,3 +156,24 @@ function back_webcam(){
 	imgForm.removeEventListener('submit', submitForm);
 	imup.required = true;
 }
+
+
+let sticker1;
+let sticker2;
+let sticker3;
+
+function addSticker1(element){
+	sticker1 = element;
+	context.drawImage(sticker1, 0, 0, 100, 100);
+}
+
+function addSticker2(element){
+	sticker2 = element;
+	context.drawImage(sticker2, 200, 0, 100, 100);
+}
+
+function addSticker3(element){
+	sticker3 = element;
+	context.drawImage(sticker3, 400, 0, 100, 100);
+}
+

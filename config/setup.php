@@ -92,19 +92,6 @@
 		$pdo->exec($sql);
 		echo ('Likes Table Created!<br>');
 
-		//Create the 'friends' table
-		$sql = 'CREATE TABLE friends(
-			friends_id INT AUTO_INCREMENT,
-			user_1 INT NOT NULL,
-			user_2 INT NOT NULL,
-			friends_from TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-			PRIMARY KEY (friends_id),
-			FOREIGN KEY (user_1) REFERENCES users(id),
-			FOREIGN KEY (user_2) REFERENCES users(id)
-		)';
-		$pdo->exec($sql);
-		echo ('Friends Table Created!(temp)<br>');
-
 		//Create the 'vkey' table
 		$sql = 'CREATE TABLE vkey(
 			id INT AUTO_INCREMENT,

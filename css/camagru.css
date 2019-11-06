@@ -27,6 +27,15 @@ textarea {
 	resize: vertical;
 }
 
+#video{
+	padding: 0 !important;
+}
+
+#canvas {
+	margin-top: -100%;
+	margin-bottom: 30px;
+}
+
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
 	position: fixed;

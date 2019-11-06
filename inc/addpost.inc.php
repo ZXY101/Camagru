@@ -116,8 +116,13 @@
 				<button type="button" id="webcam_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" onclick="open_webcam()">Use Webcam</button>
 				<div class="w3-center" id="webcam" style="display: none">
 					<div id="wc_img" class="w3-margin"></div>
-					<video id="video" class="wc w3-border w3-border-red w3-image">Stream Not Available...</video>
-					<canvas id="canvas" class="wc 3-border w3-border-red w3-image" style="display: none"></canvas>
+					<video id="video" class="w3-border w3-border-red w3-image">Stream Not Available...</video>
+					<canvas id="canvas" class="3-border w3-border-red w3-image"></canvas>
+					<div id="stickers">
+						<img src="/Camagru/images/stickers/1.png" alt="" onclick="addSticker1(this)">
+						<img src="/Camagru/images/stickers/2.png" alt="" onclick="addSticker2(this)">
+						<img src="/Camagru/images/stickers/3.png" alt="" onclick="addSticker3(this)">
+					</div>
 					<button type="button" id="photo_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border">Take Photo</button>
 					<button type="button" id="clear_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display: none">Clear</button>
 				</div>
@@ -137,5 +142,7 @@
 		</form>
 	</div>
 </div>
+
+
 <script src="js/webcam.js"></script>
 <?php require('inc/footer.inc.php')?>
