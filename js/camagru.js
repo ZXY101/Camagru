@@ -32,8 +32,11 @@ function deletePost() {
 	}
 }
 
+let order;
+
 function orderBy(){
 	let option = document.getElementById('orderBy').value;
+	order = option;
 
 	let params = "order_by="+option;
 
