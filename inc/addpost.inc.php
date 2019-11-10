@@ -9,6 +9,17 @@
 		header('Location: /Camagru/index.php?page=login.inc.php');
 	}
 
+	try{
+		$pdo = connectDB($DB_DSN, $DB_USER, $DB_PASSWORD);
+		$sql = 'SELECT image FROM posts';
+		$stmt = $pdo->prepare($sql);
+		$stmt->execute();
+
+		$thumbnails = $stmt->fetchAll();
+	}catch(PDOException $e){
+		$e->getMessage();
+	}
+
 	if (filter_has_var(INPUT_POST, 'submit')){
 		//Store and validate inputs
 		$title = trim(htmlspecialchars($_POST['title']));
@@ -137,9 +148,14 @@
 			<p>
 				<input type="submit" name="submit" id="submit_input" value="Post" class="w3-button w3-hover-red w3-padding-medium w3-black w3-border">
 			</p>
-		<br class="w3-hide-medium w3-hide-small hideme">
-
+			
 		</form>
+		<?php foreach ($thumbnails as $thumnail):?>
+		<div class="w3-card w3-margin w3-border w3-border-red">
+			<p class="w3-center"><img class="w3-image" src="<?php echo $thumnail->image?>" alt="" style="max-width:200px"></p>
+		</div>
+		<?php endforeach?>
+		<br class="w3-hide-medium w3-hide-small hideme">
 	</div>
 </div>
 
