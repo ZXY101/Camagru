@@ -36,6 +36,10 @@ textarea {
 	margin-bottom: 30px;
 }
 
+#preview_canvas{
+	margin-top: -100%;
+}
+
 /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
 	position: fixed;

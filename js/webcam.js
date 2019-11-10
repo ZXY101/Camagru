@@ -97,6 +97,33 @@ function submitForm(e){
 
 		xhr.send(params);
 	}
+
+	if (addingStickers && using_wc == false){
+		prev_canv.width = output.width;
+		prev_canv.height = output.height;
+		context2.drawImage(output, 0, 0, output.width, output.height);
+		if (sticker1)
+			context2.drawImage(sticker1, 0, output.height-110, 100, 100);
+		if (sticker2)
+			context2.drawImage(sticker2, 100, output.height-110, 100, 100);
+		if (sticker3)
+			context2.drawImage(sticker3, 200, output.height-110, 100, 100);
+		let imgg2 = prev_canv.toDataURL('image/png');
+
+		let params = "title="+document.getElementById('img_title').value+"&message="+document.getElementById('message').value+"&image="+imgg2;
+
+		let xhr = new XMLHttpRequest();
+		xhr.open('POST', '/Camagru/inc/addFWC.php', true);
+		xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhr.onload = function(){
+			if (this.status == 200){
+				console.log(this.responseText);
+				window.location.href = '/Camagru/'
+			}
+		};
+
+		xhr.send(params);
+	}
 }
 
 function clearPicture (){
@@ -115,9 +142,13 @@ function clearPicture (){
 			wc_img.removeChild(wc_img.childNodes[0]);
 }
 
-
+let using_wc = false;
 function open_webcam(){
+	using_wc = true;
 	imup.style.display = "none";
+	imup.value = '';
+	output.src= '';
+	clearStickers();
 	document.getElementById("or").style.display = "none";
 	document.getElementById("webcam_btn").style.display = "none";
 	document.getElementById("preview_div").style.display = "none";
@@ -142,16 +173,22 @@ function open_webcam(){
 }
 
 function back_webcam(){
+	using_wc = false;
 	imup.style.display = "block";
 	document.getElementById("or").style.display = "block";
 	document.getElementById("webcam_btn").style.display = "block";
-	document.getElementById("preview_div").style.display = "block";
+	if (imageLoaded)
+		document.getElementById("preview_div").style.display = "block";
 	document.getElementById("back_btn").style.display = "none";
 	document.getElementById("webcam").style.display = "none";
+	stickerBtn.style.display = "none";
+	document.getElementById('stickPre').style.display='none';
 
-	wc_stream.getTracks().forEach(function(track) {
-		track.stop();
-	  });
+
+	if (wc_stream)
+		wc_stream.getTracks().forEach(function(track) {
+			track.stop();
+		});
 
 	imgForm.removeEventListener('submit', submitForm);
 	imup.required = true;
@@ -177,3 +214,64 @@ function addSticker3(element){
 	context.drawImage(sticker3, 400, 0, 100, 100);
 }
 
+
+let imageLoaded = false;
+
+let output = document.getElementById('preview');
+let prev_canv = document.getElementById('preview_canvas');
+let context2 = prev_canv.getContext('2d');
+
+function previewImg(event) {
+		let reader = new FileReader();
+		reader.onload = function()
+		{
+		 document.getElementById('preview_div').style.display = 'block';
+		 output.src = reader.result;
+		}
+		prev_canv.width = output.width;
+		reader.readAsDataURL(event.target.files[0]);
+		clearStickers();
+		
+		imageLoaded = true;
+}
+
+let stickerBtn = document.getElementById('add_stickers_btn');
+let clearStickerBtn = document.getElementById('clear_stickers_btn');
+let addingStickers = false;
+
+
+function addStickers(){
+	prev_canv.width=output.width;
+	stickerBtn.style.display = 'none';
+	clearStickerBtn.style.display = 'block';
+	addingStickers = true;
+	imgForm.addEventListener('submit', submitForm);
+
+	document.getElementById('add_stickers').style.display = 'block';
+}
+
+function clearStickers(){
+	clearStickerBtn.style.display = 'none';
+	stickerBtn.style.display = 'block';
+	context2.clearRect(0, 0, canvas.width, canvas.height);
+	addingStickers = true;
+	imgForm.removeEventListener('submit', submitForm);
+	document.getElementById('stickPre').style.display='block';
+
+	document.getElementById('add_stickers').style.display = 'none';
+}
+
+function addSticker1_(element){
+	sticker1 = element;
+	context2.drawImage(sticker1, 0, 0, 100, 100);
+}
+
+function addSticker2_(element){
+	sticker2 = element;
+	context2.drawImage(sticker2, 100, 0, 100, 100);
+}
+
+function addSticker3_(element){
+	sticker3 = element;
+	context2.drawImage(sticker3, 200, 0, 100, 100);
+}

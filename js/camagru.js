@@ -52,15 +52,3 @@ function orderBy(){
 	xhr.send(params);
 }
 
-function previewImg(event) {
-	{
-		var reader = new FileReader();
-		reader.onload = function()
-		{
-		 var output = document.getElementById('preview');
-		 document.getElementById('preview_div').style.display = 'block';
-		 output.src = reader.result;
-		}
-		reader.readAsDataURL(event.target.files[0]);
-	}
-}

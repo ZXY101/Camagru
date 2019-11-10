@@ -121,7 +121,19 @@
 			</p>
 			<p>
 				<p><label class="w3-text-red "><b>Image</b></label></p>
-				<div class="w3-center" style="display:none" id="preview_div"><img id="preview" style="max-width:100%" class="w3-margin-bottom"></div>
+				<div class="w3-center" style="display:none" id="preview_div">
+					<div id="stickPre">
+						<img id="preview" style="max-width:100%" class="w3-image">
+						<p style="position:relative"><canvas id="preview_canvas" class="3-border w3-border-red w3-image"></canvas></p>
+					</div>
+					<button type="button" id="add_stickers_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" onclick="addStickers()">Add Stickers</button>
+					<button type="button" id="clear_stickers_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" style="display:none"onclick="clearStickers()">Clear Stickers</button>
+					<div id="add_stickers" style="display:none">
+						<img src="/Camagru/images/stickers/1.png" alt="" onclick="addSticker1_(this)">
+						<img src="/Camagru/images/stickers/2.png" alt="" onclick="addSticker2_(this)">
+						<img src="/Camagru/images/stickers/3.png" alt="" onclick="addSticker3_(this)">
+					</div>
+				</div>
 				<input class="w3-border w3-black w3-input w3-hover-red w3-text-white" name="image" id="image_up" type="file" required onchange="previewImg(event)">
 				<p class="w3-text-red w3-center" id="or">Or</p>
 				<button type="button" id="webcam_btn" class="w3-input w3-hover-red w3-padding-medium w3-black w3-border" onclick="open_webcam()">Use Webcam</button>
