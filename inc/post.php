@@ -128,6 +128,10 @@
 				<input type="hidden" id ="post_id" value = "<?php echo $_GET['id']?>">
 			</button>
 		<?php endif?>
+		<p class="w3-text-red">
+			<a href="https://www.facebook.com/sharer/sharer.php?u=#url">Facebook</a>
+			<a href="https://twitter.com/intent/tweet?text=Camagru%20Post%20http://localhost:8080/Camagru/inc/post.php?id=<?php echo $_GET['id']?>&hashtags=camagru">Twitter</a>
+		</p>
 
 
 		<div class="w3-card w3-margin w3-padding w3-border w3-border-red">
