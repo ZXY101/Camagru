@@ -3,7 +3,7 @@
 A simple web application based off of instagram, using the several core fundamentals of web development. 
 Using PHP, HTML, CSS, JSS and SQL to create a website that allows you to register a new user and upload images to the site.
 
-## Requiremtns
+## Requirements
 - XAMPP/MAMP
 
 ## Setup
